@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Bunny Online</title>
+
+    <meta
+        name="description"
+        content="Panel de administración de Bunny Online"
+    >
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #0b0d12;
+            color: #ffffff;
+            min-height: 100vh;
+        }
+
+        .app {
+            min-height: 100vh;
+            display: flex;
+        }
+
+        /* SIDEBAR */
+
+        .sidebar {
+            width: 250px;
+            background: #151820;
+            border-right: 1px solid #292d38;
+            padding: 20px 15px;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+        }
+
+        .logo {
+            padding: 10px 12px 25px;
+            border-bottom: 1px solid #292d38;
+            margin-bottom: 15px;
+        }
+
+        .logo h1 {
+            font-size: 22px;
+        }
+
+        .logo span {
+            color: #7c5cff;
+        }
+
+        .logo p {
+            color: #858b99;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+        .menu {
+            list-style: none;
+        }
+
+        .menu li {
+            margin-bottom: 6px;
+        }
+
+        .menu button {
+            width: 100%;
+            padding: 13px;
+            border: 0;
+            border-radius: 9px;
+            background: transparent;
+            color: #c8ccd5;
+            text-align: left;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .menu button:hover,
+        .menu .active {
+            background: #4735b8;
+            color: #ffffff;
+        }
+
+        /* CONTENIDO */
+
+        .content {
+            margin-left: 250px;
+            width: calc(100% - 250px);
+            padding: 25px;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .topbar h2 {
+            font-size: 25px;
+        }
+
+        .admin {
+            background: #1b1f28;
+            border: 1px solid #303541;
+            padding: 10px 15px;
+            border-radius: 10px;
+            color: #d5d8df;
+        }
+
+        /* TARJETAS */
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .card {
+            background: #171a21;
+            border: 1px solid #2a2e38;
+            border-radius: 14px;
+            padding: 20px;
+            min-height: 130px;
+        }
+
+        .card-title {
+            color: #8f95a3;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .card-value {
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .green {
+            color: #26d97f;
+        }
+
+        .yellow {
+            color: #ffc83d;
+        }
+
+        .purple {
+            color: #9a70ff;
+        }
+
+        .blue {
+            color: #5d8cff;
+        }
+
+        /* BIENVENIDA */
+
+        .welcome {
+            margin-bottom: 25px;
+            padding: 25px;
+            border-radius: 15px;
+            background: linear-gradient(
+                120deg,
+                #4634c5,
+                #792ee7
+            );
+        }
+
+        .welcome h3 {
+            font-size: 23px;
+            margin-bottom: 8px;
+        }
+
+        .welcome p {
+            color: #e6e2ff;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 1000px) {
+            .cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 700px) {
+
+            .sidebar {
+                width: 70px;
+                padding: 15px 8px;
+            }
+
+            .logo h1 {
+                font-size: 0;
+                text-align: center;
+            }
+
+            .logo h1::after {
+                content: "🐰";
+                font-size: 25px;
+            }
+
+            .logo p {
+                display: none;
+            }
+
+            .menu button {
+                text-align: center;
+                font-size: 0;
+                padding: 13px 5px;
+            }
+
+            .menu button::first-letter {
+                font-size: 20px;
+            }
+
+            .content {
+                margin-left: 70px;
+                width: calc(100% - 70px);
+                padding: 15px;
+            }
+
+            .topbar h2 {
+                font-size: 20px;
+            }
+
+            .admin {
+                font-size: 12px;
+                padding: 8px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .welcome {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <h1>Bunny <span>Online</span></h1>
+            <p>Panel de administración</p>
+        </div>
+
+        <ul class="menu">
+
+            <li>
+                <button class="active">
+                    🏠 Dashboard
+                </button>
+            </li>
+
+            <li>
+                <button>
+                    👥 Usuarios
+                </button>
+            </li>
+
+            <li>
+                <button>
+                    🧪 Pruebas
+                </button>
+            </li>
+
+            <li>
+                <button>
+                    📦 Planes
+                </button>
+            </li>
+
+            <li>
+                <button>
+                    🌐 Servidores
+                </button>
+            </li>
+
+            <li>
+                <button>
+                    💳 Pagos
+                </button>
+            </li>
+
+            <li>
+                <button>
+                    📊 Estadísticas
+                </button>
+            </li>
+
+            <li>
+                <button>
+                    📢 Avisos
+                </button>
+            </li>
+
+            <li>
+                <button>
+                    🔐 Administradores
+                </button>
+            </li>
+
+            <li>
+                <button>
+                    🔑 API
+                </button>
+            </li>
+
+            <li>
+                <button>
+                    ⚙️ Configuración
+                </button>
+            </li>
+
+        </ul>
+
+    </aside>
+
+    <!-- CONTENIDO -->
+
+    <main class="content">
+
+        <div class="topbar">
+
+            <h2>Dashboard</h2>
+
+            <div class="admin">
+                🐰 Administrador
+            </div>
+
+        </div>
+
+        <section class="welcome">
+
+            <h3>
+                Bienvenido a Bunny Online 🐰
+            </h3>
+
+            <p>
+                Panel de administración de BUNNY VPN
+            </p>
+
+        </section>
+
+        <!-- ESTADÍSTICAS -->
+
+        <section class="cards">
+
+            <div class="card">
+                <div class="card-title">
+                    👥 Usuarios totales
+                </div>
+
+                <div class="card-value purple">
+                    0
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">
+                    🟢 Usuarios activos
+                </div>
+
+                <div class="card-value green">
+                    0
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">
+                    🧪 Pruebas activas
+                </div>
+
+                <div class="card-value yellow">
+                    0
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">
+                    🌐 Servidores online
+                </div>
+
+                <div class="card-value blue">
+                    0
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">
+                    🔌 Conectados
+                </div>
+
+                <div class="card-value green">
+                    0
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">
+                    ⏰ Expirados
+                </div>
+
+                <div class="card-value yellow">
+                    0
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">
+                    📦 Planes activos
+                </div>
+
+                <div class="card-value purple">
+                    0
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">
+                    💰 Ventas del día
+                </div>
+
+                <div class="card-value green">
+                    $0 ARS
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+</body>
+  </html>
